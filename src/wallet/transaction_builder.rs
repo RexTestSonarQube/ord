@@ -63,6 +63,14 @@ pub enum Target {
 
 impl Display for Error {
   fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+
+    let x = 42;
+      // Intentional lint issue: unnecessary clone on a type that implements Copy
+    let y = x.clone();
+    println!("x = {}, y = {}", x, y);
+
+    let z = --x;
+
     match self {
       Error::Dust {
         output_value,
